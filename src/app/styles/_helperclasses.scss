@@ -1,0 +1,210 @@
+@import 'mixins';
+
+.flexbox {
+    @include display-flex();
+    &._column {
+        height: 100%;
+        @include flex-direction(column);
+    }
+
+    > div, > span {
+		@include flex(1);
+        &._no-flex {
+            @include flexy(none);
+        }
+    }
+
+    > div.flex-2, > span.flex-2 {
+        @include flex(2);
+    }
+    ._ac {
+        align-self: center;
+    }
+}
+
+.full-width {
+    min-width: initial !important;
+	width: 100% !important;
+}
+
+.not-clickable {
+    pointer-events: none;
+}
+
+.multi-line {
+    white-space: normal;
+}
+.one-line {
+    white-space: nowrap;
+}
+.underline {
+    text-decoration: underline;
+}
+.line-through {
+    text-decoration: line-through;
+}
+
+._hidden {
+    display: none;
+}
+
+.blur {
+    @include blur(3px);
+}
+.spacer {
+    @include flexy(1 1 auto);
+}
+
+.tl {
+    text-align: left;
+}
+
+.tc {
+    text-align: center;
+}
+
+.tr {
+    text-align: right;
+}
+
+.up {
+    text-transform: uppercase;
+}
+
+.b {
+    font-weight: bold;
+}
+
+.ita {
+    font-style: italic;
+}
+
+.cl {
+    clear: both;
+}
+.faded {
+    opacity: 0.7;
+}
+
+// Helper classes for offsets
+.maa {
+    margin: auto;
+}
+.mc {
+    margin: 0 auto;
+}
+
+.ma0, .mh0, .mr0 {margin-right: 0*$px !important;}
+.ma0, .mh0, .ml0 {margin-left: 0*$px !important;}
+.ma0, .mv0, .mt0 {margin-top: 0*$px !important;}
+.ma0, .mv0, .mb0 {margin-bottom: 0*$px !important;}
+.ma5, .mh5, .mr5 {margin-right: 5*$px !important;}
+.ma5, .mh5, .ml5 {margin-left: 5*$px !important;}
+.ma5, .mv5, .mt5 {margin-top: 5*$px !important;}
+.ma5, .mv5, .mb5 {margin-bottom: 5*$px !important;}
+.ma10, .mh10, .mr10 {margin-right: 10*$px !important;}
+.ma10, .mh10, .ml10 {margin-left: 10*$px !important;}
+.ma10, .mv10, .mt10 {margin-top: 10*$px !important;}
+.ma10, .mv10, .mb10 {margin-bottom: 10*$px !important;}
+.ma15, .mh15, .mr15 {margin-right: 15*$px !important;}
+.ma15, .mh15, .ml15 {margin-left: 15*$px !important;}
+.ma15, .mv15, .mt15 {margin-top: 15*$px !important;}
+.ma15, .mv15, .mb15 {margin-bottom: 15*$px !important;}
+.ma20, .mh20, .mr20 {margin-right: 20*$px !important;}
+.ma20, .mh20, .ml20 {margin-left: 20*$px !important;}
+.ma20, .mv20, .mt20 {margin-top: 20*$px !important;}
+.ma20, .mv20, .mb20 {margin-bottom: 20*$px !important;}
+.ma25, .mh25, .mr25 {margin-right: 25*$px !important;}
+.ma25, .mh25, .ml25 {margin-left: 25*$px !important;}
+.ma25, .mv25, .mt25 {margin-top: 25*$px !important;}
+.ma25, .mv25, .mb25 {margin-bottom: 25*$px !important;}
+.ma30, .mh30, .mr30 {margin-right: 30*$px !important;}
+.ma30, .mh30, .ml30 {margin-left: 30*$px !important;}
+.ma30, .mv30, .mt30 {margin-top: 30*$px !important;}
+.ma30, .mv30, .mb30 {margin-bottom: 30*$px !important;}
+.ma40, .mh40, .mr40 {margin-right: 40*$px !important;}
+.ma40, .mh40, .ml40 {margin-left: 40*$px !important;}
+.ma40, .mv40, .mt40 {margin-top: 40*$px !important;}
+.ma40, .mv40, .mb40 {margin-bottom: 40*$px !important;}
+.ma50, .mh50, .mr50 {margin-right: 50*$px !important;}
+.ma50, .mh50, .ml50 {margin-left: 50*$px !important;}
+.ma50, .mv50, .mt50 {margin-top: 50*$px !important;}
+.ma50, .mv50, .mb50 {margin-bottom: 50*$px !important;}
+.ma60, .mh60, .mr60 {margin-right: 60*$px !important;}
+.ma60, .mh60, .ml60 {margin-left: 60*$px !important;}
+.ma60, .mv60, .mt60 {margin-top: 60*$px !important;}
+.ma60, .mv60, .mb60 {margin-bottom: 60*$px !important;}
+.ma80, .mh80, .mr80 {margin-right: 80*$px !important;}
+.ma80, .mh80, .ml80 {margin-left: 80*$px !important;}
+.ma80, .mv80, .mt80 {margin-top: 80*$px !important;}
+.ma80, .mv80, .mb80 {margin-bottom: 80*$px !important;}
+.ma100, .mh100, .mr100 {margin-right: 100*$px !important;}
+.ma100, .mh100, .ml100 {margin-left: 100*$px !important;}
+.ma100, .mv100, .mt100 {margin-top: 100*$px !important;}
+.ma100, .mv100, .mb100 {margin-bottom: 100*$px !important;}
+.ma120, .mh120, .mr120 {margin-right: 120*$px !important;}
+.ma120, .mh120, .ml120 {margin-left: 120*$px !important;}
+.ma120, .mv120, .mt120 {margin-top: 120*$px !important;}
+.ma120, .mv120, .mb120 {margin-bottom: 120*$px !important;}
+.ma130, .mh130, .mr130 {margin-right: 130*$px !important;}
+.ma130, .mh130, .ml130 {margin-left: 130*$px !important;}
+.ma130, .mv130, .mt130 {margin-top: 130*$px !important;}
+.ma130, .mv130, .mb130 {margin-bottom: 130*$px !important;}
+.ma150, .mh150, .mr150 {margin-right: 150*$px !important;}
+.ma150, .mh150, .ml150 {margin-left: 150*$px !important;}
+.ma150, .mv150, .mt150 {margin-top: 150*$px !important;}
+.ma150, .mv150, .mb150 {margin-bottom: 150*$px !important;}
+.ma200, .mh200, .mr200 {margin-right: 200*$px !important;}
+.ma200, .mh200, .ml200 {margin-left: 200*$px !important;}
+.ma200, .mv200, .mt200 {margin-top: 200*$px !important;}
+.ma200, .mv200, .mb200 {margin-bottom: 200*$px !important;}
+
+
+.pa0, .ph0, .pr0 {padding-right: 0*$px !important;}
+.pa0, .ph0, .pl0 {padding-left: 0*$px !important;}
+.pa0, .pv0, .pt0 {padding-top: 0*$px !important;}
+.pa0, .pv0, .pb0 {padding-bottom: 0*$px !important;}
+.pa5, .ph5, .pr5 {padding-right: 5*$px !important;}
+.pa5, .ph5, .pl5 {padding-left: 5*$px !important;}
+.pa5, .pv5, .pt5 {padding-top: 5*$px !important;}
+.pa5, .pv5, .pb5 {padding-bottom: 5*$px !important;}
+.pa10, .ph10, .pr10 {padding-right: 10*$px !important;}
+.pa10, .ph10, .pl10 {padding-left: 10*$px !important;}
+.pa10, .pv10, .pt10 {padding-top: 10*$px !important;}
+.pa10, .pv10, .pb10 {padding-bottom: 10*$px !important;}
+.pa15, .ph15, .pr15 {padding-right: 15*$px !important;}
+.pa15, .ph15, .pl15 {padding-left: 15*$px !important;}
+.pa15, .pv15, .pt15 {padding-top: 15*$px !important;}
+.pa15, .pv15, .pb15 {padding-bottom: 15*$px !important;}
+.pa20, .ph20, .pr20 {padding-right: 20*$px !important;}
+.pa20, .ph20, .pl20 {padding-left: 20*$px !important;}
+.pa20, .pv20, .pt20 {padding-top: 20*$px !important;}
+.pa20, .pv20, .pb20 {padding-bottom: 20*$px !important;}
+.pa30, .ph30, .pr30 {padding-right: 30*$px !important;}
+.pa30, .ph30, .pl30 {padding-left: 30*$px !important;}
+.pa30, .pv30, .pt30 {padding-top: 30*$px !important;}
+.pa30, .pv30, .pb30 {padding-bottom: 30*$px !important;}
+.pa40, .ph40, .pr40 {padding-right: 40*$px !important;}
+.pa40, .ph40, .pl40 {padding-left: 40*$px !important;}
+.pa40, .pv40, .pt40 {padding-top: 40*$px !important;}
+.pa40, .pv40, .pb40 {padding-bottom: 40*$px !important;}
+.pa50, .ph50, .pr50 {padding-right: 50*$px !important;}
+.pa50, .ph50, .pl50 {padding-left: 50*$px !important;}
+.pa50, .pv50, .pt50 {padding-top: 50*$px !important;}
+.pa50, .pv50, .pb50 {padding-bottom: 50*$px !important;}
+.pa60, .ph60, .pr60 {padding-right: 60*$px !important;}
+.pa60, .ph60, .pl60 {padding-left: 60*$px !important;}
+.pa60, .pv60, .pt60 {padding-top: 60*$px !important;}
+.pa60, .pv60, .pb60 {padding-bottom: 60*$px !important;}
+
+// background
+.bg {
+    background-repeat: no-repeat;
+    background-position: center;
+    &._contain {
+        background-size: contain;
+    }
+    &._cover {
+        background-size: cover;
+    }
+}

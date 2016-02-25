@@ -1,0 +1,230 @@
+/**
+ * ****************************************
+ * MIXINS
+ * ****************************************
+ */
+
+/**
+ * wrap class definitions inside this mixin to cover multiple pixel densities
+ */
+@mixin media() {
+  // default is based on kindle fire 600x1024 with 1dpr
+  @content;
+
+  /* enable this if you want to change pixel value for different screen sizes   
+     1.3 dpr, e.g. ipad */
+   /* @media (-webkit-min-device-pixel-ratio: 1.3) {// samsung pad 
+      $px: 1px/1.33 !global;
+      @content;
+      $px: 1px !global;
+    }*/
+}
+
+@mixin alpha-background-color($attribute, $color, $background) {
+	$percent: alpha($color) * 100%;
+	$opaque: opacify($color, 1);
+	$solid-color: mix($opaque, $background, $percent);
+	#{$attribute}: $solid-color;
+	#{$attribute}: $color;
+}
+
+@mixin display-flex() {
+    display: flex;
+    display: -webkit-flex;
+}
+
+@mixin flex-direction($direction) {
+    flex-direction: $direction;
+    -webkit-flex-direction: $direction;
+}
+
+@mixin flex($val) {
+    flex: $val;
+    -webkit-flex: $val;
+}
+
+@mixin display-flexy($orientation) {
+	$old_orient: horizontal;
+	@if $orientation == column {
+		$old_orient: vertical;
+	}
+
+	// old display box
+	display: -webkit-box;
+	display: -moz-box;
+	display: -ms-box;
+	display: box;
+
+	// old box orientation
+	-webkit-box-orient: $old_orient;
+	-moz-box-orient: $old_orient;
+	-ms-box-orient: $old_orient;
+	box-orient: $old_orient;
+
+	@include display-flex();
+	@include flex-direction($orientation);
+}
+
+@mixin flexy($value) {
+	$old_value: 1;
+	$test: 0 0 auto;
+	@if $value == $test {
+		$old_value: 0;
+	}
+
+	// old flex
+	-webkit-box-flex: $old_value;
+	-moz-box-flex: $old_value;
+	-ms-box-flex: $old_value;
+	box-flex: $old_value;
+
+	@include flex($value);
+}
+
+@mixin reset_flexy() {
+	-webkit-box-flex: none;
+	-moz-box-flex: none;
+	-ms-box-flex: none;
+	box-flex: none;
+	@include flex(none);
+}
+
+@mixin flex-align($value) {
+
+	-webkit-box-pack: $value;
+	-moz-box-pack: $value;
+	-webkit-justify-content: $value;
+	-ms-flex-pack: $value;
+	justify-content: $value;
+
+	-webkit-box-align: $value;
+	-moz-box-align: $value;
+	-webkit-align-items: $value;
+	-ms-flex-align: $value;
+	align-items: $value;
+}
+
+@mixin animation($str) {
+    -webkit-animation: #{$str};
+    -moz-animation: #{$str};
+    -ms-animation: #{$str};
+    -o-animation: #{$str};
+    animation: #{$str};
+}
+
+@mixin keyframes($name) {
+    @-webkit-keyframes #{$name} {
+        @content;
+    }
+    @-moz-keyframes #{$name} {
+        @content;
+    }
+    @-ms-keyframes #{$name} {
+        @content;
+    }
+    @keyframes #{$name} {
+        @content;
+    }
+}
+
+@mixin transform($val) {
+    -webkit-transform: $val;
+    -moz-transform: $val;
+    -ms-transform: $val;
+    -o-transform: $val;
+    transform: $val;
+}
+
+@mixin transition($args...) {
+  -webkit-transition: $args;
+  -moz-transition: $args;
+  -ms-transition: $args;
+  -o-transition: $args;
+  transition: $args;
+}
+
+@mixin transition-property($property...) {
+  -moz-transition-property:    $property;
+  -o-transition-property:      $property;
+  -webkit-transition-property: $property;
+  transition-property:         $property;
+}
+
+@mixin blur($value) {
+	filter: blur($value);
+	-webkit-filter: blur($value);
+}
+
+@mixin fadeIn($duration) {
+	@include animation(fadeIn $duration ease-in-out);
+}
+
+@mixin box-shadow($top, $left:"", $blur:"", $color:"", $inset: false) {
+  @if $inset {
+    -webkit-box-shadow:inset $top #{$left} #{$blur} #{$color};
+    -moz-box-shadow:inset $top $left #{$blur} #{$color};
+    box-shadow:inset $top #{$left} #{$blur} #{$color};
+  } @else {
+    -webkit-box-shadow: $top #{$left} #{$blur} #{$color};
+    -moz-box-shadow: $top #{$left} #{$blur} #{$color};
+    box-shadow: $top #{$left} #{$blur} #{$color};
+  }
+}
+
+@mixin user-select($pref) {
+  -webkit-touch-callout: $pref;
+  -webkit-user-select: $pref;
+  -khtml-user-select: $pref;
+  -moz-user-select: $pref;
+  -ms-user-select: $pref;
+  user-select: $pref;
+}
+
+@mixin linear-gradient($top, $bottom){
+    background: $top; /* Old browsers */
+    background: -moz-linear-gradient(top,  $top 0%, $bottom 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,$top), color-stop(100%,$bottom)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top,  $top 0%,$bottom 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top,  $top 0%,$bottom 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top,  $top 0%,$bottom 100%); /* IE10+ */
+    background: linear-gradient(to bottom,  $top 0%,$bottom 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#000000',GradientType=0 ); /* IE6-9 */
+}
+
+@mixin rotate( $val: -2deg ) {
+  -webkit-transform: rotate($val);
+  -moz-transform: rotate($val);
+  -ms-transform: rotate($val);
+  -o-transform: rotate($val);
+  transform: rotate($val);
+}
+
+@include keyframes(blink) {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@include keyframes(rotate-infinite) {
+  0% {
+    @include transform(rotate(360deg));
+  }
+  100% {
+    @include transform(rotate(0deg));
+  }
+}
+
+@include keyframes(pulse) {
+  0% {
+    @include transform(scale(0.8));
+  }
+  50% {
+    @include transform(scale(1));
+  }
+  100% {
+    @include transform(scale(0.8));
+  }
+}

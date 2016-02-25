@@ -1,0 +1,90 @@
+@import 'mixins';
+@import 'variables';
+
+@font-face {
+	font-family: 'Open Sans Light';
+	src: url("../assets/font/opensanslight.ttf");
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Open Sans Light Italic';
+	src: url("../assets/font/opensanslightitalic.ttf");
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Open Sans Normal';
+	src: url("../assets/font/opensansregular.ttf");
+	font-weight: normal;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'Open Sans Bold';
+	src: url("../assets/font/opensansbold.ttf");
+	font-weight: normal;
+	font-style: normal;
+}
+html {
+	width: 100%;
+	height: 100%;
+}
+body, #root, .root {
+	@include user-select(none);
+	position: relative;
+	width: 100%;
+	height: 100%;
+	font-family: $font_open_sans_normal;
+	font-size: $font-medium*$px;
+	overflow-x: hidden;
+}
+.app {
+	@include transition(all 150ms ease-out);
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+}
+
+
+/**
+ * FONT SIZES
+ */
+.font-xxl {
+	font-size: $font-xxlarge*$px;
+}
+.font-xl {
+	font-size: $font-xlarge*$px;
+}
+.font-larger {
+	font-size: $font-larger*$px;
+	line-height: 1.2;
+}
+.font-l {
+	font-size: $font-large*$px;
+}
+.font-m {
+	font-size: $font-medium*$px;
+	line-height: 1.2;
+}
+.font-ms {
+	font-size: $font-medium-small*$px;
+}
+.font-s {
+	font-size: $font-small*$px;
+}
+/**
+ * Font types
+ */
+.bold {
+	font-family: $font_open_sans_bold;
+}
+.thin {
+	font-family: $font_open_sans_light;
+}
+.normal {
+	font-family: $font_open_sans_normal;
+}
