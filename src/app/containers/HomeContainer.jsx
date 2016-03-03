@@ -10,17 +10,23 @@ class HomeContainer extends React.Component {
 	constructor(props) {
 	    super(props);
 	    this.state = {
-	    	settingsRetrieved: false
+	    	settingsRetrieved: false,
+	    	message: null,
+	    	error: null,
+	    	deviceError: null,
 	    };
 	  }
 
 
 	componentDidMount() {
 
-		anywherecommercecardreader.addListener(this.onSettingsRetrieved, 'onSettingsRetrieved');
+		anywherecommercecardreader.addListener(this.onSettingsRetrieved.bind(this), 'onSettingsRetrieved');
+		anywherecommercecardreader.addListener(this.displayMessage.bind(this),'onMessage');
+		anywherecommercecardreader.addListener(this.displayError.bind(this),'onError');
+		anywherecommercecardreader.addListener(this.displayDeviceError.bind(this),'onDeviceError');
 
 		if(window.anywherecommercecardreader){
-			anywherecommercecardreader.initReader('1002', 'secretpass', true);
+			anywherecommercecardreader.init(null, '1002', 'password', true);
 		}	
 	}
 
@@ -30,10 +36,31 @@ class HomeContainer extends React.Component {
 		});
 	}
 
+	displayMessage(res) {
+		this.setState({
+			message: res.name
+		});
+	}
+
+	displayError(res) {
+		this.setState({
+			error: res.name
+		});
+	}
+
+	displayDeviceError(res) {
+		this.setState({
+			deviceError: res.name
+		});
+	}
+
 	render() {
 		return (
 			<div className="page">
-				{this.state.settingsRetrieved && <div>Terminal connected</div>}
+				<div>{this.state.settingsRetrieved ? 'teminal logged in' :  'teminal logged not'}</div>
+				<div>Last Message: {this.state.message}</div>
+				<div>Last Error: {this.state.error}</div>
+				<div>Last DeviceError: {this.state.deviceError}</div>
 			</div>
 		);
 	}
