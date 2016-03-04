@@ -14,6 +14,8 @@ class HomeContainer extends React.Component {
 	    	message: null,
 	    	error: null,
 	    	deviceError: null,
+	    	saleResponse: null,
+	    	testCase: null,
 	    };
 	  }
 
@@ -24,9 +26,14 @@ class HomeContainer extends React.Component {
 		anywherecommercecardreader.addListener(this.displayMessage.bind(this),'onMessage');
 		anywherecommercecardreader.addListener(this.displayError.bind(this),'onError');
 		anywherecommercecardreader.addListener(this.displayDeviceError.bind(this),'onDeviceError');
+		anywherecommercecardreader.addListener(this.sendSignature.bind(this),'onSignatureRequired');
+
+
+		anywherecommercecardreader.addListener(this.displaySaleResponse.bind(this), 'onSaleResponse');
 
 		if(window.anywherecommercecardreader){
-			anywherecommercecardreader.init(null, '1002', 'password', true);
+			//anywherecommercecardreader.init(null, '1002', 'password', true); //for tests against the debug server
+			anywherecommercecardreader.init(null, '1002', 'password', true, true); //for the verification tests 
 		}	
 	}
 
@@ -54,13 +61,67 @@ class HomeContainer extends React.Component {
 		});
 	}
 
+	displaySaleResponse(res) {
+		this.setState({
+			saleResponse: res.json
+		});
+	}
+
+	runTestcase(testCase) {
+		this.setState({
+			message: null,
+	    	error: null,
+	    	deviceError: null,
+	    	saleResponse: null,
+	    	testCase: testCase,
+		});
+		anywherecommercecardreader.doSelfTest(null, testCase);
+	}
+
+	/**
+	 * send some random signature
+	 */
+	sendSignature() {
+		anywherecommercecardreader.signitureStartTouch(10,10);
+		anywherecommercecardreader.signitureMoveTouch(15,15);
+		anywherecommercecardreader.signitureUpTouch();
+		anywherecommercecardreader.signitureSubmit();
+	} 
+
+
 	render() {
 		return (
 			<div className="page">
-				<div>{this.state.settingsRetrieved ? 'teminal logged in' :  'teminal logged not'}</div>
+				<div style={{paddingBottom: '20px'}}>{this.state.settingsRetrieved ? 'teminal logged in' :  'teminal NOT logged in'}</div>
+
+				<div style={{paddingBottom: '20px'}}>Current Test Case: {this.state.testCase}</div>
+
 				<div>Last Message: {this.state.message}</div>
 				<div>Last Error: {this.state.error}</div>
-				<div>Last DeviceError: {this.state.deviceError}</div>
+				<div style={{paddingBottom: '40px'}}>Last DeviceError: {this.state.deviceError}</div>
+
+				<div style={{overflowWrap: 'break-word', paddingBottom: '40px'}}>Last SaleResponse: {this.state.saleResponse}</div>
+				{
+					this.state.settingsRetrieved &&
+					(
+						<div>
+							<button onClick={() => this.runTestcase('TRACK_APPROVAL_SERVER')} >Press to run TRACK_APPROVAL_SERVER testcase</button>
+							<button onClick={() => this.runTestcase('TRACK_DECLINED_SERVER')} >Press to run TRACK_DECLINED_SERVER testcase</button>
+							<button onClick={() => this.runTestcase('TRACK_DEVICE_SWIPE_FAILED')} >Press to run TRACK_DEVICE_SWIPE_FAILED testcase</button>
+							<button onClick={() => this.runTestcase('TRACK_DEVICE_DECLINED_ERROR')} >Press to run TRACK_DEVICE_DECLINED_ERROR testcase</button>
+							<button onClick={() => this.runTestcase('TRACK_DEVICE_TIMEOUT')} >Press to run TRACK_DEVICE_TIMEOUT testcase</button>
+							<button onClick={() => this.runTestcase('TRACK_DEVICE_INTERRUPTED')} >Press to run TRACK_DEVICE_INTERRUPTED testcase</button>
+							<button onClick={() => this.runTestcase('TRACK_TRANSACTION_ERROR')} >Press to run TRACK_TRANSACTION_ERROR testcase</button>
+							<button onClick={() => this.runTestcase('EMV_SIG_APPROVAL_SERVER')} >Press to run EMV_SIG_APPROVAL_SERVER testcase</button>
+							<button onClick={() => this.runTestcase('EMV_DECLINED_SERVER')} >Press to run EMV_DECLINED_SERVER testcase</button>
+							<button onClick={() => this.runTestcase('EMV_TRANSACTION_ERROR')} >Press to run EMV_TRANSACTION_ERROR testcase</button>
+							<button onClick={() => this.runTestcase('EMV_DEVICE_INVALID_CARD')} >Press to run EMV_DEVICE_INVALID_CARD testcase</button>
+							<button onClick={() => this.runTestcase('EMV_DEVICE_DECLINED_ERROR')} >Press to run EMV_DEVICE_DECLINED_ERROR testcase</button>
+							<button onClick={() => this.runTestcase('EMV_DEVICE_TIMEOUT')} >Press to run EMV_DEVICE_TIMEOUT testcase</button>
+							<button onClick={() => this.runTestcase('EMV_DEVICE_INTERRUPTED')} >Press to run EMV_DEVICE_INTERRUPTED testcase</button>
+						</div>
+					)
+				}
 			</div>
 		);
 	}
