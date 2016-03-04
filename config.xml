@@ -1,12 +1,12 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.codeb.reactapp" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="com.codeb.anywherecommerce-testapp" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <!-- this is the name for the -target=bill  since we did not provide appa for the other targets this will work for now (otherwise we have to move it into the grunt file)-->
-    <name>react app</name>
+    <name>anywherecommerce walker testapp</name>
     <description>
-        The Awesome Payment App from Touchpoint to pay easy and fast in Restaurants
+        App runnign testcases for the anywherecommerce walker card reader - using the cordova-plugin-cardreader-anywherecommerce-walker plugin
     </description>
-    <author email="dev@cordova.apache.org" href="http://cordova.io">
-        Apache Cordova Team
+    <author email="g.heescher@code-b.com">
+        Gerd Heescher
     </author>
     <content src="index.html" />
     <access origin="*" />

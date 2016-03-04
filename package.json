@@ -20,7 +20,7 @@
     "babel-runtime": "^5.8.20",
     "cordova": "^5.4.1",
     "cordova-plugin-navigationbar": "git+https://github.com/RRutsche/cordova-plugin-navigationbar",
-    "cordova-plugin-cardreader-anywherecommerce-walker": "git+https://github.com/code-berlin/cordova-plugin-cardreader-anywherecommerce-walker.git",
+    "cordova-plugin-cardreader-anywherecommerce-walker": "0.0.17",
     "css-loader": "^0.15.1",
     "eslint": "~1.10.3",
     "eslint-loader": "~1.0.0",
@@ -90,8 +90,8 @@
   ],
   "private": true,
   "app": {
-    "name": "react app",
-    "id": "com.codeb.reactapp",
+    "name": "anywherecommerce walker testapp",
+    "id": "com.codeb.anywherecommerce-testapp",
     "plugins": [
       "node_modules/cordova-plugin-navigationbar",
       "node_modules/cordova-plugin-cardreader-anywherecommerce-walker"
