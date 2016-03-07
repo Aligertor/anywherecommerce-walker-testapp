@@ -78,6 +78,10 @@ class HomeContainer extends React.Component {
 		anywherecommercecardreader.doSelfTest(null, testCase);
 	}
 
+	validateTests() {
+		anywherecommercecardreader.validateSelfTest();
+	}
+
 	/**
 	 * send some random signature
 	 */
@@ -119,6 +123,7 @@ class HomeContainer extends React.Component {
 							<button onClick={() => this.runTestcase('EMV_DEVICE_DECLINED_ERROR')} >Press to run EMV_DEVICE_DECLINED_ERROR testcase</button>
 							<button onClick={() => this.runTestcase('EMV_DEVICE_TIMEOUT')} >Press to run EMV_DEVICE_TIMEOUT testcase</button>
 							<button onClick={() => this.runTestcase('EMV_DEVICE_INTERRUPTED')} >Press to run EMV_DEVICE_INTERRUPTED testcase</button>
+							<button onClick={() => this.validateTests()} >Press to vildate tests</button>
 						</div>
 					)
 				}
